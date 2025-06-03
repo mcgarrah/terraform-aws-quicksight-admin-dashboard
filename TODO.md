@@ -23,79 +23,102 @@ The goal is to create a Terraform implementation of the QuickSight Admin Dashboa
 
 ### 1. Project Structure Setup
 - [x] Create initial project structure
-- [ ] Set up provider configuration
-- [ ] Create variables.tf for configurable parameters
-- [ ] Create outputs.tf for important resource outputs
+- [x] Set up provider configuration
+- [x] Create variables.tf for configurable parameters
+- [x] Create outputs.tf for important resource outputs
 
 ### 2. IAM Resources
-- [ ] Create IAM role for Lambda functions with appropriate permissions
+- [x] Create IAM role for Lambda functions with appropriate permissions
 - [ ] Create service-linked roles if needed
 
 ### 3. Lambda Functions
-- [ ] Extract and analyze Lambda function code from the CloudFormation templates
-- [ ] Create Lambda function resources in Terraform
-- [ ] Set up Lambda environment variables
-- [ ] Configure Lambda triggers and permissions
+- [x] Extract and analyze Lambda function code from the CloudFormation templates
+- [x] Create Lambda function resources in Terraform
+- [x] Set up Lambda environment variables
+- [x] Configure Lambda triggers and permissions
 
 ### 4. S3 Buckets
-- [ ] Create S3 bucket for storing Lambda code
-- [ ] Create S3 bucket for CloudTrail logs (if needed)
+- [x] Create S3 bucket for storing Lambda code
+- [x] Create S3 bucket for CloudTrail logs (if needed)
 - [ ] Set up appropriate bucket policies
 
 ### 5. Athena Resources
-- [ ] Create Glue database
-- [ ] Create Glue tables for:
+- [x] Create Glue database
+- [x] Create Glue tables for:
   - Group membership
   - User information
   - Dashboard information
-  - Usage data
+  - Dataset information
 
 ### 6. QuickSight Resources
-- [ ] Create QuickSight data source pointing to Athena
-- [ ] Create QuickSight datasets
+- [x] Create QuickSight data source pointing to Athena
+- [x] Create QuickSight datasets
 - [ ] Create QuickSight analysis
 - [ ] Create QuickSight dashboard
-- [ ] Set up appropriate permissions
+- [x] Set up appropriate permissions
 
 ### 7. CloudWatch Resources
-- [ ] Set up CloudWatch Events/EventBridge rules for triggering Lambda functions
-- [ ] Configure CloudWatch Logs for Lambda functions
+- [x] Set up CloudWatch Events/EventBridge rules for triggering Lambda functions
+- [x] Configure CloudWatch Logs for Lambda functions
 
 ### 8. Documentation
-- [ ] Update README.md with comprehensive deployment instructions
-- [ ] Document variables and their purposes
-- [ ] Create architecture diagram
+- [x] Update README.md with comprehensive deployment instructions
+- [x] Document variables and their purposes
+- [x] Create architecture diagram
 - [ ] Add usage examples
 
 ## Reusability Considerations
 
 1. **Parameterization**:
-   - Make all resource names configurable
-   - Allow customization of IAM permissions
-   - Make QuickSight dashboard elements configurable
+   - [x] Make all resource names configurable
+   - [x] Allow customization of IAM permissions
+   - [ ] Make QuickSight dashboard elements configurable
 
 2. **Modularity**:
-   - Create separate Terraform modules for:
-     - IAM resources
-     - Lambda functions
-     - Athena/Glue resources
-     - QuickSight resources
+   - [x] Create separate Terraform modules for:
+     - [x] Lambda functions
+     - [x] Athena/Glue resources
+     - [x] QuickSight resources
+     - [ ] IAM resources (currently in main.tf)
 
 3. **State Management**:
-   - Provide instructions for remote state management
-   - Consider state locking mechanisms
+   - [ ] Provide instructions for remote state management
+   - [ ] Consider state locking mechanisms
 
 4. **Versioning**:
-   - Set up semantic versioning for the Terraform modules
-   - Document compatibility with different Terraform versions
+   - [ ] Set up semantic versioning for the Terraform modules
+   - [x] Document compatibility with different Terraform versions
+
+## Remaining Tasks
+
+1. **QuickSight Analysis and Dashboard**:
+   - Create QuickSight analysis resource in Terraform
+   - Create QuickSight dashboard resource in Terraform
+   - Define dashboard visualizations and layout
+
+2. **Security Enhancements**:
+   - Add S3 bucket policies for data protection
+   - Refine IAM permissions to follow least privilege principle
+   - Create a dedicated IAM module
+
+3. **State Management**:
+   - Add instructions for remote state management (S3 + DynamoDB)
+   - Document state locking approach
+
+4. **Documentation**:
+   - Add detailed usage examples
+   - Create deployment guide with step-by-step instructions
+   - Document troubleshooting steps
+
+5. **Testing**:
+   - Test deployment in multiple AWS accounts
+   - Validate data collection and dashboard functionality
+   - Create test cases for different QuickSight configurations
 
 ## Next Steps
 
-1. Download and analyze the Lambda function code
-2. Create the basic Terraform configuration files
-3. Implement IAM roles and policies
-4. Implement Lambda functions
-5. Implement Athena resources
-6. Implement QuickSight resources
-7. Test the implementation
-8. Document the solution
+1. Implement QuickSight analysis and dashboard resources
+2. Enhance security with bucket policies and refined IAM permissions
+3. Add remote state management instructions
+4. Complete documentation with usage examples
+5. Test the implementation in different environments
