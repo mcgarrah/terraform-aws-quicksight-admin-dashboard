@@ -1,0 +1,7 @@
+This directory will contain the Lambda function code extracted from the CloudFormation templates.
+
+The two main Lambda functions are:
+1. data_prepare.py - For collecting QuickSight metadata
+2. dataset_info.py - For processing dataset information
+
+The Lambda code will need to be downloaded from the CloudFormation templates and adapted for use with Terraform.
