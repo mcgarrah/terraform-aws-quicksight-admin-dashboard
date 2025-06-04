@@ -40,7 +40,7 @@ The goal is to create a Terraform implementation of the QuickSight Admin Dashboa
 ### 4. S3 Buckets
 - [x] Create S3 bucket for storing Lambda code
 - [x] Create S3 bucket for CloudTrail logs (if needed)
-- [ ] Set up appropriate bucket policies
+- [x] Set up appropriate bucket policies
 
 ### 5. Athena Resources
 - [x] Create Glue database
@@ -53,8 +53,8 @@ The goal is to create a Terraform implementation of the QuickSight Admin Dashboa
 ### 6. QuickSight Resources
 - [x] Create QuickSight data source pointing to Athena
 - [x] Create QuickSight datasets
-- [ ] Create QuickSight analysis
-- [ ] Create QuickSight dashboard
+- [x] Create QuickSight analysis
+- [x] Create QuickSight dashboard
 - [x] Set up appropriate permissions
 
 ### 7. CloudWatch Resources
@@ -79,46 +79,52 @@ The goal is to create a Terraform implementation of the QuickSight Admin Dashboa
      - [x] Lambda functions
      - [x] Athena/Glue resources
      - [x] QuickSight resources
-     - [ ] IAM resources (currently in main.tf)
+     - [x] IAM resources
 
 3. **State Management**:
-   - [ ] Provide instructions for remote state management
-   - [ ] Consider state locking mechanisms
+   - [x] Provide instructions for remote state management
+   - [x] Consider state locking mechanisms
 
 4. **Versioning**:
    - [ ] Set up semantic versioning for the Terraform modules
    - [x] Document compatibility with different Terraform versions
 
-## Remaining Tasks
+## Future Enhancements
 
-1. **QuickSight Analysis and Dashboard**:
-   - Create QuickSight analysis resource in Terraform
-   - Create QuickSight dashboard resource in Terraform
-   - Define dashboard visualizations and layout
+### 1. Testing and Validation
+- [ ] Add a test directory with sample test cases
+- [ ] Create a validation script to verify the deployment
+- [ ] Test deployment in multiple AWS accounts
+- [ ] Validate data collection and dashboard functionality
+- [ ] Create test cases for different QuickSight configurations
 
-2. **Security Enhancements**:
-   - Add S3 bucket policies for data protection
-   - Refine IAM permissions to follow least privilege principle
-   - Create a dedicated IAM module
+### 2. Documentation Improvements
+- [ ] Add a CONTRIBUTING.md file with guidelines for contributors
+- [ ] Create a more detailed deployment guide
+- [ ] Add troubleshooting section to README.md
+- [ ] Add detailed usage examples
 
-3. **State Management**:
-   - Add instructions for remote state management (S3 + DynamoDB)
-   - Document state locking approach
+### 3. Security Enhancements
+- [ ] Implement more granular IAM permissions following least privilege
+- [ ] Add encryption for S3 buckets (SSE-S3 or KMS)
+- [ ] Configure VPC endpoints for private access
 
-4. **Documentation**:
-   - Add detailed usage examples
-   - Create deployment guide with step-by-step instructions
-   - Document troubleshooting steps
+### 4. CI/CD Integration
+- [ ] Add GitHub Actions or other CI/CD workflow files
+- [ ] Create automated deployment pipelines
 
-5. **Testing**:
-   - Test deployment in multiple AWS accounts
-   - Validate data collection and dashboard functionality
-   - Create test cases for different QuickSight configurations
+### 5. Monitoring and Alerting
+- [ ] Add CloudWatch alarms for Lambda errors
+- [ ] Implement SNS notifications for failures
 
-## Next Steps
+### 6. Cost Optimization
+- [ ] Add lifecycle rules for S3 buckets
+- [ ] Configure Lambda memory and timeout optimally
 
-1. Implement QuickSight analysis and dashboard resources
-2. Enhance security with bucket policies and refined IAM permissions
-3. Add remote state management instructions
-4. Complete documentation with usage examples
-5. Test the implementation in different environments
+### 7. Versioning
+- [ ] Add semantic versioning for modules
+- [ ] Create release tags
+
+### 8. Additional Features
+- [ ] Add support for custom QuickSight themes
+- [ ] Implement email reports for dashboard usage
