@@ -83,6 +83,29 @@ start_date          = "2023/01/01"
 quicksight_admin_arn = "arn:aws:quicksight:us-east-1:your-account-id:user/default/admin-username"
 ```
 
+To retrieve the CloudTrail bucket:
+
+``` shell
+ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+BUCKET_NAME=$(aws cloudtrail describe-trails --query 'trailList[0].S3BucketName' --output text)
+echo "${BUCKET_NAME}/AWSLogs/${ACCOUNT_ID}/CloudTrail"
+```
+
+To retrieve the QuickSight Admin ARN:
+
+List of all admin users:
+``` shell
+ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+aws quicksight list-users --aws-account-id $ACCOUNT_ID --namespace default --query "UserList[?Role=='ADMIN'].{UserName:UserName,Arn:Arn}" --output table
+```
+
+Substitute in a user name:
+
+``` shell
+ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+aws quicksight describe-user --aws-account-id $ACCOUNT_ID --namespace default --user-name [admin-user-name]
+```
+
 ## Customization
 
 You can customize the solution by modifying the following files:
