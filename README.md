@@ -8,7 +8,7 @@ Get up and running in minutes:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/terraform-aws-quicksight-admin-dashboard.git
+git clone https://github.com/mcgarrah/terraform-aws-quicksight-admin-dashboard.git
 cd terraform-aws-quicksight-admin-dashboard
 
 # 2. Create terraform.tfvars with your values

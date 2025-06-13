@@ -13,9 +13,17 @@ start_date = "2023/01/01"
 
 # ARN of your QuickSight admin user
 # Format: arn:aws:quicksight:us-east-1:123456789012:user/default/admin-username
+#
+# [admin-user-name] from Quicksight Admin "Manage Users"
+#
+# Retrieve with AWS CLI:
+#  aws quicksight describe-user --aws-account-id [aws-account-id] --namespace default --user-name [admin-user-name]
+#
 quicksight_admin_arn = "arn:aws:quicksight:us-east-1:123456789012:user/default/admin-username"
 
 # Email address to receive alerts
+#
+# email from Quicksight Admin "Account Settings" "Notification email address"
 alert_email = "admin@example.com"
 
 # Optional: Custom tags
