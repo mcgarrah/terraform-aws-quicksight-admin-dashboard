@@ -2,8 +2,13 @@ import json
 import boto3
 import csv
 import os
-import datetime
+import logging
+import time
 from datetime import datetime, timedelta
+
+# Configure logging
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 def lambda_handler(event, context):
     # Initialize QuickSight client
@@ -51,7 +56,19 @@ def get_datasets(quicksight, account_id):
                 )
                 datasets.append(dataset_detail['DataSet'])
             except Exception as e:
-                print(f"Error getting details for dataset {dataset_id}: {str(e)}")
+                logger.error(f"Error getting details for dataset {dataset_id}: {str(e)}")
+                # Implement retry logic for transient errors
+                if "ThrottlingException" in str(e) or "RequestTimeout" in str(e):
+                    logger.info(f"Retrying dataset {dataset_id} after throttling...")
+                    time.sleep(1)  # Add backoff delay
+                    try:
+                        dataset_detail = quicksight.describe_data_set(
+                            AwsAccountId=account_id,
+                            DataSetId=dataset_id
+                        )
+                        datasets.append(dataset_detail['DataSet'])
+                    except Exception as retry_error:
+                        logger.error(f"Retry failed for dataset {dataset_id}: {str(retry_error)}")
         
         if 'NextToken' in response:
             next_token = response['NextToken']

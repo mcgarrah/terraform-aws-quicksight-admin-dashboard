@@ -1,0 +1,16 @@
+# Example terraform.tfvars file
+# Copy this file to terraform.tfvars and update with your values
+
+# AWS region to deploy resources
+region = "us-east-1"
+
+# Location of your CloudTrail logs in S3, without s3:// prefix
+# Format: your-cloudtrail-bucket/AWSLogs/your-account-id/CloudTrail
+cloudtrail_location = "your-cloudtrail-bucket/AWSLogs/123456789012/CloudTrail"
+
+# Start date for the data in the CloudTrail bucket in YYYY/MM/DD format
+start_date = "2023/01/01"
+
+# ARN of your QuickSight admin user
+# Format: arn:aws:quicksight:us-east-1:123456789012:user/default/admin-username
+quicksight_admin_arn = "arn:aws:quicksight:us-east-1:123456789012:user/default/admin-username"

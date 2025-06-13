@@ -18,9 +18,59 @@ resource "aws_s3_bucket" "lambda_code" {
   bucket = "admin-console-lambda-code-${data.aws_caller_identity.current.account_id}"
 }
 
+# S3 bucket encryption for Lambda code
+resource "aws_s3_bucket_server_side_encryption_configuration" "lambda_code" {
+  bucket = aws_s3_bucket.lambda_code.id
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "AES256"
+    }
+  }
+}
+
+# S3 bucket versioning for Lambda code
+resource "aws_s3_bucket_versioning" "lambda_code" {
+  bucket = aws_s3_bucket.lambda_code.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
 # S3 bucket for data storage
 resource "aws_s3_bucket" "data_storage" {
   bucket = "admin-console-data-${data.aws_caller_identity.current.account_id}"
+}
+
+# S3 bucket encryption for data storage
+resource "aws_s3_bucket_server_side_encryption_configuration" "data_storage" {
+  bucket = aws_s3_bucket.data_storage.id
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "AES256"
+    }
+  }
+}
+
+# S3 bucket versioning for data storage
+resource "aws_s3_bucket_versioning" "data_storage" {
+  bucket = aws_s3_bucket.data_storage.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
+# S3 bucket lifecycle configuration for data storage
+resource "aws_s3_bucket_lifecycle_configuration" "data_storage" {
+  bucket = aws_s3_bucket.data_storage.id
+  
+  rule {
+    id     = "cleanup-old-data"
+    status = "Enabled"
+    
+    expiration {
+      days = 90
+    }
+  }
 }
 
 # S3 bucket policy for data storage

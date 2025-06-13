@@ -52,13 +52,14 @@ resource "aws_iam_policy" "this" {
     Statement = [
       {
         Action = [
-          "iam:*",
-          "quicksight:*",
-          "lambda:*",
-          "s3:*",
-          "sts:AssumeRole",
-          "cloudwatch:*",
-          "logs:*"
+          "quicksight:List*",
+          "quicksight:Describe*",
+          "s3:GetObject",
+          "s3:PutObject",
+          "s3:ListBucket",
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
         ]
         Resource = "*"
         Effect   = "Allow"

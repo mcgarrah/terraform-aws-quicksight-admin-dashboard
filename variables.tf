@@ -17,12 +17,22 @@ variable "start_date" {
 variable "quicksight_admin_arn" {
   description = "ARN of your QuickSight admin user (e.g., arn:aws:quicksight:us-east-1:accountid:user/default/admin)"
   type        = string
+  
+  validation {
+    condition     = can(regex("^arn:aws:quicksight:[a-z0-9-]+:[0-9]{12}:user/default/.+$", var.quicksight_admin_arn))
+    error_message = "The quicksight_admin_arn must be a valid QuickSight user ARN in the format arn:aws:quicksight:region:account-id:user/default/username."
+  }
 }
 
 variable "lambda_runtime" {
   description = "Runtime for Lambda functions"
   type        = string
-  default     = "python3.9"
+  default     = "python3.12"
+  
+  validation {
+    condition     = contains(["python3.9", "python3.10", "python3.11", "python3.12"], var.lambda_runtime)
+    error_message = "The lambda_runtime must be one of: python3.9, python3.10, python3.11, or python3.12."
+  }
 }
 
 variable "lambda_timeout" {

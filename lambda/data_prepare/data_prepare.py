@@ -2,9 +2,13 @@ import json
 import boto3
 import csv
 import os
-import datetime
+import logging
 from datetime import datetime, timedelta
 import time
+
+# Configure logging
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 def lambda_handler(event, context):
     # Initialize QuickSight client
@@ -144,7 +148,19 @@ def get_dashboards(quicksight, account_id):
                 )
                 dashboards.append(dashboard_detail['Dashboard'])
             except Exception as e:
-                print(f"Error getting details for dashboard {dashboard_id}: {str(e)}")
+                logger.error(f"Error getting details for dashboard {dashboard_id}: {str(e)}")
+                # Implement retry logic for transient errors
+                if "ThrottlingException" in str(e) or "RequestTimeout" in str(e):
+                    logger.info(f"Retrying dashboard {dashboard_id} after throttling...")
+                    time.sleep(1)  # Add backoff delay
+                    try:
+                        dashboard_detail = quicksight.describe_dashboard(
+                            AwsAccountId=account_id,
+                            DashboardId=dashboard_id
+                        )
+                        dashboards.append(dashboard_detail['Dashboard'])
+                    except Exception as retry_error:
+                        logger.error(f"Retry failed for dashboard {dashboard_id}: {str(retry_error)}")
         
         if 'NextToken' in response:
             next_token = response['NextToken']
