@@ -8,6 +8,7 @@
 #     region         = "us-east-1"
 #     dynamodb_table = "terraform-locks"
 #     encrypt        = true
+#     kms_key_id     = "alias/terraform-bucket-key"  # Optional: For additional encryption security
 #   }
 # }
 

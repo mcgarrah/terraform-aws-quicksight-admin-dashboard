@@ -29,7 +29,7 @@ The goal is to create a Terraform implementation of the QuickSight Admin Dashboa
 
 ### 2. IAM Resources
 - [x] Create IAM role for Lambda functions with appropriate permissions
-- [ ] Create service-linked roles if needed
+- [x] Create service-linked roles if needed
 
 ### 3. Lambda Functions
 - [x] Extract and analyze Lambda function code from the CloudFormation templates
@@ -73,7 +73,7 @@ The goal is to create a Terraform implementation of the QuickSight Admin Dashboa
 1. **Parameterization**:
    - [x] Make all resource names configurable
    - [x] Allow customization of IAM permissions
-   - [ ] Make QuickSight dashboard elements configurable
+   - [x] Make QuickSight dashboard elements configurable
 
 2. **Modularity**:
    - [x] Create separate Terraform modules for:
@@ -87,7 +87,7 @@ The goal is to create a Terraform implementation of the QuickSight Admin Dashboa
    - [x] Consider state locking mechanisms
 
 4. **Versioning**:
-   - [ ] Set up semantic versioning for the Terraform modules
+   - [x] Set up semantic versioning for the Terraform modules
    - [x] Document compatibility with different Terraform versions
 
 ## Implemented Enhancements
@@ -132,14 +132,14 @@ The goal is to create a Terraform implementation of the QuickSight Admin Dashboa
 
 ### 3. Advanced Security
 - [ ] Configure VPC endpoints for private access
-- [ ] Implement AWS KMS for encryption
+- [x] Implement AWS KMS for encryption
 
 ### 4. Cost Optimization
 - [ ] Optimize Lambda memory and timeout settings
 - [ ] Add cost estimation documentation
 
 ### 5. Versioning
-- [ ] Set up semantic versioning for modules
+- [x] Set up semantic versioning for modules
 - [ ] Create release tags
 
 ### 6. Additional Features
